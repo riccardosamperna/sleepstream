@@ -1,0 +1,17 @@
+{
+  "uuid": "84f85a90-26e3-42bd-881c-c5fc3f5a5ce5",
+  "shortName": "sleepstream",
+  "longName": "sleepstream",
+  "companyName": "MakeAwesomeHappen",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
