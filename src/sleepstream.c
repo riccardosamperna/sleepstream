@@ -2,12 +2,39 @@
 
 #define PLAY_MUSIC 1 
 #define ACTIVATION_KEY 0
-#define THRESHOLD 250
+#define THRESHOLD 50
+#define MINUTE_IN_MSEC 60000
+#define VALUE_FOR_GRAPH 0
+#define TAG 0
 
 static Window *window;
 static TextLayer *text_layer;
+static AppTimer *timer;
 const uint32_t inbound_size = 64;
 const uint32_t outbound_size = 64;
+
+void addto_datalog (void *data) {
+	DataLoggingResult result;
+
+	result=data_logging_log(logging_session, VALUE_FOR_GRAPH, 1);
+	//debugging
+	if (result == DATA_LOGGING_BUSY)
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "Someone else is writing to this logging session.");
+	if (result == DATA_LOGGING_FULL)
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "No more space to save data.");
+	if (result == DATA_LOGGING_NOT_FOUND)
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "The logging session does not exist.");
+	if (result == DATA_LOGGING_CLOSED)
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "The logging session was made inactive.");
+	if (result == DATA_LOGGING_INVALID_PARAMS)
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "An invalid parameter was passed to one of the functions.");
+
+	//value reset
+	VALUE_FOR_GRAPH = 0;
+	
+	if(result == DATA_LOGGING_SUCCESS)
+		timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);	
+}
 
 void out_sent_handler(DictionaryIterator *sent, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Message Sent!");
@@ -85,6 +112,9 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 
 	if (biggest > THRESHOLD)
 		send_music_activation();
+
+	if(biggest > VALUE_FOR_GRAPH)
+		VALUE_FOR_GRAPH = biggest;
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -94,11 +124,16 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   accel_service_set_sampling_rate(ACCEL_SAMPLING_10HZ);
   accel_data_service_subscribe(25, &accel_data_handler);
+	DataLoggingSessionRef logging_session=data_logging_create(TAG, DATA_LOGGING_INT, 4, FALSE);
+	TAG++;
+	timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
 	app_message_init();
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   accel_data_service_unsubscribe();
+	app_timer_cancel(timer);
+	data_logging_finish(logging_session); 	
 }
 
 static void click_config_provider(void *context) {
@@ -134,6 +169,8 @@ static void init(void) {
 
 static void deinit(void) {
   accel_data_service_unsubscribe();
+	app_timer_cancel(timer);
+	data_logging_finish(logging_session);
   window_destroy(window);
 }
 
