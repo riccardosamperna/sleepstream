@@ -4,19 +4,20 @@
 #define ACTIVATION_KEY 0
 #define THRESHOLD 50
 #define MINUTE_IN_MSEC 60000
-#define VALUE_FOR_GRAPH 0
-#define TAG 0
 
 static Window *window;
 static TextLayer *text_layer;
 static AppTimer *timer;
 const uint32_t inbound_size = 64;
 const uint32_t outbound_size = 64;
+DataLoggingSessionRef logging_session;
+int value_for_graph;
+int tag = 0;
 
 void addto_datalog (void *data) {
 	DataLoggingResult result;
 
-	result=data_logging_log(logging_session, VALUE_FOR_GRAPH, 1);
+	result=data_logging_log(logging_session, (void *)value_for_graph, 1);
 	//debugging
 	if (result == DATA_LOGGING_BUSY)
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Someone else is writing to this logging session.");
@@ -30,7 +31,7 @@ void addto_datalog (void *data) {
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "An invalid parameter was passed to one of the functions.");
 
 	//value reset
-	VALUE_FOR_GRAPH = 0;
+	value_for_graph = 0;
 	
 	if(result == DATA_LOGGING_SUCCESS)
 		timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);	
@@ -113,8 +114,8 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 	if (biggest > THRESHOLD)
 		send_music_activation();
 
-	if(biggest > VALUE_FOR_GRAPH)
-		VALUE_FOR_GRAPH = biggest;
+	if(biggest > value_for_graph)
+		value_for_graph = biggest;
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -124,8 +125,8 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   accel_service_set_sampling_rate(ACCEL_SAMPLING_10HZ);
   accel_data_service_subscribe(25, &accel_data_handler);
-	DataLoggingSessionRef logging_session=data_logging_create(TAG, DATA_LOGGING_INT, 4, FALSE);
-	TAG++;
+	logging_session=data_logging_create(tag, DATA_LOGGING_INT, 4, false);
+	tag++;
 	timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
 	app_message_init();
 }
