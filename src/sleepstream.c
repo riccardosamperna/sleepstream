@@ -1,23 +1,31 @@
 #include <pebble.h>
 
-#define PLAY_MUSIC 1 
+#define PLAY_MUSIC 1
+#define STOP_MUSIC 2 
 #define ACTIVATION_KEY 0
-#define THRESHOLD 50
+#define STOP_KEY 1
+#define THRESHOLD_CHANGE_TIME 300000
 #define MINUTE_IN_MSEC 60000
 
 static Window *window;
 static TextLayer *text_layer;
-static AppTimer *timer;
+static AppTimer *datalog_timer;
+static AppTimer *threshold_timer;
 const uint32_t inbound_size = 64;
 const uint32_t outbound_size = 64;
 DataLoggingSessionRef logging_session;
-int value_for_graph;
+int value_for_graph = 0;
 int tag = 0;
+int threshold = 50;
 
 void addto_datalog (void *data) {
 	DataLoggingResult result;
+	int value[] = {value_for_graph};
 
-	result=data_logging_log(logging_session, (void *)value_for_graph, 1);
+	APP_LOG(APP_LOG_LEVEL_DEBUG, "Entrato %d", value_for_graph);
+
+	result=data_logging_log(logging_session, &value , 1);
+	
 	//debugging
 	if (result == DATA_LOGGING_BUSY)
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Someone else is writing to this logging session.");
@@ -33,8 +41,17 @@ void addto_datalog (void *data) {
 	//value reset
 	value_for_graph = 0;
 	
-	if(result == DATA_LOGGING_SUCCESS)
-		timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);	
+	APP_LOG(APP_LOG_LEVEL_DEBUG, "Data added!");
+	data_logging_finish(logging_session);
+
+	logging_session=data_logging_create(tag, DATA_LOGGING_INT, 4, false);
+	tag++;
+
+	datalog_timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
+}
+
+void change_threshold (void *data) {
+	threshold = 50;
 }
 
 void out_sent_handler(DictionaryIterator *sent, void *context) {
@@ -52,6 +69,26 @@ static void app_message_init(void) {
   // Init buffer
   app_message_open(inbound_size, outbound_size);  
 }
+
+void stop_music(void) {
+	DictionaryIterator *iter;
+	
+	if (app_message_outbox_begin(&iter) != APP_MSG_OK) {
+    return;
+  }
+
+	Tuplet value = TupletInteger(STOP_KEY, STOP_MUSIC);
+  dict_write_tuplet(iter, &value);
+
+	app_message_outbox_send();
+
+	threshold = 150;
+
+	if(threshold_timer == NULL)
+		threshold_timer = app_timer_register(THRESHOLD_CHANGE_TIME, &change_threshold, NULL);
+	
+}
+	
 
 void send_music_activation(void) {
   DictionaryIterator *iter;
@@ -111,7 +148,7 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 	if (biggest_z > biggest)
 		biggest = biggest_z;	
 
-	if (biggest > THRESHOLD)
+	if (biggest > threshold)
 		send_music_activation();
 
 	if(biggest > value_for_graph)
@@ -119,7 +156,7 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-  text_layer_set_text(text_layer, "Select");
+  stop_music();
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -127,14 +164,19 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   accel_data_service_subscribe(25, &accel_data_handler);
 	logging_session=data_logging_create(tag, DATA_LOGGING_INT, 4, false);
 	tag++;
-	timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
+	datalog_timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
 	app_message_init();
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   accel_data_service_unsubscribe();
-	app_timer_cancel(timer);
-	data_logging_finish(logging_session); 	
+	if (datalog_timer != NULL){
+		app_timer_cancel(datalog_timer);
+	}
+	data_logging_finish(logging_session); 
+	if (threshold_timer != NULL){
+		app_timer_cancel(threshold_timer);
+	}	
 }
 
 static void click_config_provider(void *context) {
@@ -148,7 +190,7 @@ static void window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer, "Press up button to start, down or back button to stop");
+  text_layer_set_text(text_layer, "Press up to start");
   text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
 }
@@ -170,8 +212,13 @@ static void init(void) {
 
 static void deinit(void) {
   accel_data_service_unsubscribe();
-	app_timer_cancel(timer);
+	if (datalog_timer != NULL){
+		app_timer_cancel(datalog_timer);
+	}
 	data_logging_finish(logging_session);
+	if (threshold_timer != NULL){
+		app_timer_cancel(threshold_timer);
+	}	
   window_destroy(window);
 }
 
