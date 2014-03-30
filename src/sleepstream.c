@@ -8,7 +8,9 @@
 #define MINUTE_IN_MSEC 60000
 
 static Window *window;
-static TextLayer *text_layer;
+static TextLayer *text_layer1;
+static TextLayer *text_layer2;
+static TextLayer *text_layer3;
 static AppTimer *datalog_timer;
 static AppTimer *threshold_timer;
 const uint32_t inbound_size = 64;
@@ -189,14 +191,26 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer, "Press up to start");
-  text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
-  layer_add_child(window_layer, text_layer_get_layer(text_layer));
+  text_layer1 = text_layer_create((GRect) { .origin = { 0, 0 }, .size = { bounds.size.w, 20 } });
+  text_layer_set_text(text_layer1, "Start monitoring");
+	text_layer_set_text_alignment(text_layer1, GTextAlignmentRight);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer1));
+
+	text_layer2 = text_layer_create((GRect) { .origin = { 0, 65 }, .size = { bounds.size.w, 20 } });	
+	text_layer_set_text(text_layer2, "Stop Music");
+	text_layer_set_text_alignment(text_layer2, GTextAlignmentRight);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer2));
+
+	text_layer3 = text_layer_create((GRect) { .origin = { 0, 130 }, .size = { bounds.size.w, 20 } });
+	text_layer_set_text(text_layer3, "Stop monitoring");
+	text_layer_set_text_alignment(text_layer3, GTextAlignmentRight);  
+	layer_add_child(window_layer, text_layer_get_layer(text_layer3));
 }
 
 static void window_unload(Window *window) {
-  text_layer_destroy(text_layer);
+  text_layer_destroy(text_layer1);
+  text_layer_destroy(text_layer2);
+	text_layer_destroy(text_layer3);
 }
 
 static void init(void) {
