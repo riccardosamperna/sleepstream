@@ -295,8 +295,6 @@ Discarded input sections
                 0x0000000000000000        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.layer_set_frame
                 0x0000000000000000        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .text.layer_set_hidden
-                0x0000000000000000        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.layer_set_update_proc
                 0x0000000000000000        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.light_enable
@@ -605,7 +603,7 @@ LOAD /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib
  .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.7.o
                 0x0000000000000000                __pbl_app_info
 
-.text           0x0000000000000084      0x8c1
+.text           0x0000000000000084      0x967
  *(.text)
  .text          0x0000000000000084       0x14 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  *(.text.*)
@@ -621,195 +619,198 @@ LOAD /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib
  .text.window_unload
                 0x00000000000000d8       0x30 src/sleepstream.c.7.o
  .text.window_load
-                0x0000000000000108       0xf8 src/sleepstream.c.7.o
+                0x0000000000000108      0x110 src/sleepstream.c.7.o
  .text.click_config_provider
-                0x0000000000000200       0x30 src/sleepstream.c.7.o
+                0x0000000000000218       0x30 src/sleepstream.c.7.o
  .text.down_click_handler
-                0x0000000000000230       0x44 src/sleepstream.c.7.o
+                0x0000000000000248       0x80 src/sleepstream.c.7.o
  .text.up_click_handler
-                0x0000000000000274       0x84 src/sleepstream.c.7.o
+                0x00000000000002c8       0xc0 src/sleepstream.c.7.o
  .text.addto_datalog
-                0x00000000000002f8      0x114 src/sleepstream.c.7.o
-                0x00000000000002f8                addto_datalog
+                0x0000000000000388      0x114 src/sleepstream.c.7.o
+                0x0000000000000388                addto_datalog
  .text.stop_music
-                0x000000000000040c       0x58 src/sleepstream.c.7.o
-                0x000000000000040c                stop_music
+                0x000000000000049c       0x58 src/sleepstream.c.7.o
+                0x000000000000049c                stop_music
  .text.select_click_handler
-                0x0000000000000464        0x4 src/sleepstream.c.7.o
+                0x00000000000004f4        0x4 src/sleepstream.c.7.o
  .text.send_music_activation
-                0x0000000000000468       0x30 src/sleepstream.c.7.o
-                0x0000000000000468                send_music_activation
+                0x00000000000004f8       0x30 src/sleepstream.c.7.o
+                0x00000000000004f8                send_music_activation
  .text.axis_subtraction
-                0x0000000000000498       0x24 src/sleepstream.c.7.o
-                0x0000000000000498                axis_subtraction
+                0x0000000000000528       0x24 src/sleepstream.c.7.o
+                0x0000000000000528                axis_subtraction
  .text.accel_data_handler
-                0x00000000000004bc       0xc0 src/sleepstream.c.7.o
-                0x00000000000004bc                accel_data_handler
+                0x000000000000054c       0xc0 src/sleepstream.c.7.o
+                0x000000000000054c                accel_data_handler
  .text.startup.main
-                0x000000000000057c       0xc4 src/sleepstream.c.7.o
-                0x000000000000057c                main
+                0x000000000000060c       0xc4 src/sleepstream.c.7.o
+                0x000000000000060c                main
  .text.accel_data_service_unsubscribe
-                0x0000000000000640        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000640                accel_data_service_unsubscribe
- .text.accel_service_set_sampling_rate
-                0x000000000000064c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000064c                accel_service_set_sampling_rate
- .text.app_event_loop
-                0x0000000000000658        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000658                app_event_loop
- .text.app_log  0x0000000000000664        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000664                app_log
- .text.app_message_open
-                0x0000000000000670        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000670                app_message_open
- .text.app_timer_cancel
-                0x000000000000067c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000067c                app_timer_cancel
- .text.app_timer_register
-                0x0000000000000688        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000688                app_timer_register
- .text.data_logging_create
-                0x0000000000000694        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000694                data_logging_create
- .text.data_logging_finish
-                0x00000000000006a0        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006a0                data_logging_finish
- .text.data_logging_log
-                0x00000000000006ac        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006ac                data_logging_log
- .text.dict_write_tuplet
-                0x00000000000006b8        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006b8                dict_write_tuplet
- .text.layer_add_child
-                0x00000000000006c4        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006c4                layer_add_child
- .text.layer_get_bounds
                 0x00000000000006d0        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006d0                layer_get_bounds
- .text.memset   0x00000000000006dc        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006dc                memset
- .text.text_layer_create
+                0x00000000000006d0                accel_data_service_unsubscribe
+ .text.accel_service_set_sampling_rate
+                0x00000000000006dc        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006dc                accel_service_set_sampling_rate
+ .text.app_event_loop
                 0x00000000000006e8        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006e8                text_layer_create
- .text.text_layer_destroy
-                0x00000000000006f4        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000006f4                text_layer_destroy
- .text.text_layer_get_layer
+                0x00000000000006e8                app_event_loop
+ .text.app_log  0x00000000000006f4        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006f4                app_log
+ .text.app_message_open
                 0x0000000000000700        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000700                text_layer_get_layer
- .text.text_layer_set_text
+                0x0000000000000700                app_message_open
+ .text.app_timer_cancel
                 0x000000000000070c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000070c                text_layer_set_text
- .text.text_layer_set_text_alignment
+                0x000000000000070c                app_timer_cancel
+ .text.app_timer_register
                 0x0000000000000718        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000718                text_layer_set_text_alignment
- .text.window_create
+                0x0000000000000718                app_timer_register
+ .text.data_logging_create
                 0x0000000000000724        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000724                window_create
- .text.window_destroy
+                0x0000000000000724                data_logging_create
+ .text.data_logging_finish
                 0x0000000000000730        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000730                window_destroy
- .text.window_get_root_layer
+                0x0000000000000730                data_logging_finish
+ .text.data_logging_log
                 0x000000000000073c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000073c                window_get_root_layer
- .text.window_set_click_config_provider
+                0x000000000000073c                data_logging_log
+ .text.dict_write_tuplet
                 0x0000000000000748        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000748                window_set_click_config_provider
- .text.window_set_window_handlers
+                0x0000000000000748                dict_write_tuplet
+ .text.layer_add_child
                 0x0000000000000754        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000754                window_set_window_handlers
- .text.window_stack_push
+                0x0000000000000754                layer_add_child
+ .text.layer_get_bounds
                 0x0000000000000760        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000760                window_stack_push
- .text.app_message_outbox_begin
+                0x0000000000000760                layer_get_bounds
+ .text.layer_set_hidden
                 0x000000000000076c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000076c                app_message_outbox_begin
- .text.app_message_outbox_send
-                0x0000000000000778        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000778                app_message_outbox_send
- .text.app_message_register_outbox_failed
+                0x000000000000076c                layer_set_hidden
+ .text.memset   0x0000000000000778        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000778                memset
+ .text.text_layer_create
                 0x0000000000000784        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000784                app_message_register_outbox_failed
- .text.app_message_register_outbox_sent
+                0x0000000000000784                text_layer_create
+ .text.text_layer_destroy
                 0x0000000000000790        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000790                app_message_register_outbox_sent
- .text.window_single_click_subscribe
+                0x0000000000000790                text_layer_destroy
+ .text.text_layer_get_layer
                 0x000000000000079c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000079c                window_single_click_subscribe
- .text.accel_data_service_subscribe
+                0x000000000000079c                text_layer_get_layer
+ .text.text_layer_set_text
                 0x00000000000007a8        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000007a8                accel_data_service_subscribe
+                0x00000000000007a8                text_layer_set_text
+ .text.text_layer_set_text_alignment
+                0x00000000000007b4        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007b4                text_layer_set_text_alignment
+ .text.window_create
+                0x00000000000007c0        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007c0                window_create
+ .text.window_destroy
+                0x00000000000007cc        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007cc                window_destroy
+ .text.window_get_root_layer
+                0x00000000000007d8        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007d8                window_get_root_layer
+ .text.window_set_click_config_provider
+                0x00000000000007e4        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007e4                window_set_click_config_provider
+ .text.window_set_window_handlers
+                0x00000000000007f0        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007f0                window_set_window_handlers
+ .text.window_stack_push
+                0x00000000000007fc        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000007fc                window_stack_push
+ .text.app_message_outbox_begin
+                0x0000000000000808        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000808                app_message_outbox_begin
+ .text.app_message_outbox_send
+                0x0000000000000814        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000814                app_message_outbox_send
+ .text.app_message_register_outbox_failed
+                0x0000000000000820        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000820                app_message_register_outbox_failed
+ .text.app_message_register_outbox_sent
+                0x000000000000082c        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000082c                app_message_register_outbox_sent
+ .text.window_single_click_subscribe
+                0x0000000000000838        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000838                window_single_click_subscribe
+ .text.accel_data_service_subscribe
+                0x0000000000000844        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000844                accel_data_service_subscribe
  *(.rodata)
- .rodata        0x00000000000007b4       0x20 src/sleepstream.c.7.o
+ .rodata        0x0000000000000850       0x20 src/sleepstream.c.7.o
  *(.rodata*)
  .rodata.str1.1
-                0x00000000000007d4      0x171 src/sleepstream.c.7.o
+                0x0000000000000870      0x17b src/sleepstream.c.7.o
 
-.glue_7         0x0000000000000948        0x0
+.glue_7         0x00000000000009ec        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000000948        0x0
+.glue_7t        0x00000000000009ec        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000948        0x0
+.vfp11_veneer   0x00000000000009ec        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000000948        0x0
+.v4_bx          0x00000000000009ec        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000000948        0x0
+.iplt           0x00000000000009ec        0x0
  .iplt          0x0000000000000000        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000000948        0x0
+.rel.dyn        0x00000000000009ec        0x0
  .rel.iplt      0x0000000000000000        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .rel.got       0x0000000000000000        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000000948        0x8
+.data           0x00000000000009ec        0x8
  *(.data)
- .data          0x0000000000000948        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000000948        0x4 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000948                __dso_handle
- .data          0x000000000000094c        0x0 src/sleepstream.c.7.o
- .data          0x000000000000094c        0x0 appinfo.auto.c.7.o
- .data          0x000000000000094c        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .data          0x000000000000094c        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x000000000000094c        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x00000000000009ec        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x00000000000009ec        0x4 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x00000000000009ec                __dso_handle
+ .data          0x00000000000009f0        0x0 src/sleepstream.c.7.o
+ .data          0x00000000000009f0        0x0 appinfo.auto.c.7.o
+ .data          0x00000000000009f0        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+ .data          0x00000000000009f0        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x00000000000009f0        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
  *(.data.*)
  .data.threshold
-                0x000000000000094c        0x4 src/sleepstream.c.7.o
-                0x000000000000094c                threshold
+                0x00000000000009f0        0x4 src/sleepstream.c.7.o
+                0x00000000000009f0                threshold
 
-.igot.plt       0x0000000000000950        0x0
+.igot.plt       0x00000000000009f4        0x0
  .igot.plt      0x0000000000000000        0x0 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got            0x0000000000000950        0x4
- .got           0x0000000000000950        0x4 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+.got            0x00000000000009f4        0x4
+ .got           0x00000000000009f4        0x4 /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got.plt        0x0000000000000954        0xc
- .got.plt       0x0000000000000954        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000954                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x00000000000009f8        0xc
+ .got.plt       0x00000000000009f8        0xc /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x00000000000009f8                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x0000000000000960       0x24
+.bss            0x0000000000000a04       0x24
  *(.bss)
  *(.bss.*)
- .bss.text_layer3
-                0x0000000000000960        0x4 src/sleepstream.c.7.o
+ .bss.text_layer_start
+                0x0000000000000a04        0x4 src/sleepstream.c.7.o
+ .bss.text_layer_stopMusic
+                0x0000000000000a08        0x4 src/sleepstream.c.7.o
  .bss.datalog_timer
-                0x0000000000000964        0x4 src/sleepstream.c.7.o
+                0x0000000000000a0c        0x4 src/sleepstream.c.7.o
  .bss.threshold_timer
-                0x0000000000000968        0x4 src/sleepstream.c.7.o
- .bss.text_layer1
-                0x000000000000096c        0x4 src/sleepstream.c.7.o
- .bss.text_layer2
-                0x0000000000000970        0x4 src/sleepstream.c.7.o
+                0x0000000000000a10        0x4 src/sleepstream.c.7.o
+ .bss.text_layer_stop
+                0x0000000000000a14        0x4 src/sleepstream.c.7.o
  .bss.value_for_graph
-                0x0000000000000974        0x4 src/sleepstream.c.7.o
-                0x0000000000000974                value_for_graph
- .bss.tag       0x0000000000000978        0x4 src/sleepstream.c.7.o
-                0x0000000000000978                tag
- .bss.window    0x000000000000097c        0x4 src/sleepstream.c.7.o
- COMMON         0x0000000000000980        0x4 src/sleepstream.c.7.o
-                0x0000000000000980                logging_session
+                0x0000000000000a18        0x4 src/sleepstream.c.7.o
+                0x0000000000000a18                value_for_graph
+ .bss.tag       0x0000000000000a1c        0x4 src/sleepstream.c.7.o
+                0x0000000000000a1c                tag
+ .bss.window    0x0000000000000a20        0x4 src/sleepstream.c.7.o
+ COMMON         0x0000000000000a24        0x4 src/sleepstream.c.7.o
+                0x0000000000000a24                logging_session
 
 DISCARD
  libc.a(*)
@@ -842,13 +843,13 @@ OUTPUT(/home/riccardo/Scrivania/sleepstream/build/pebble-app.elf elf32-littlearm
  .comment       0x0000000000000000       0x4f appinfo.auto.c.7.o
  .comment       0x0000000000000000       0x4f /home/riccardo/Scrivania/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x17d9
- .debug_info    0x0000000000000000     0x14ad src/sleepstream.c.7.o
- .debug_info    0x00000000000014ad      0x32c appinfo.auto.c.7.o
+.debug_info     0x0000000000000000     0x18d4
+ .debug_info    0x0000000000000000     0x15a8 src/sleepstream.c.7.o
+ .debug_info    0x00000000000015a8      0x32c appinfo.auto.c.7.o
 
-.debug_abbrev   0x0000000000000000      0x3f5
- .debug_abbrev  0x0000000000000000      0x341 src/sleepstream.c.7.o
- .debug_abbrev  0x0000000000000341       0xb4 appinfo.auto.c.7.o
+.debug_abbrev   0x0000000000000000      0x406
+ .debug_abbrev  0x0000000000000000      0x352 src/sleepstream.c.7.o
+ .debug_abbrev  0x0000000000000352       0xb4 appinfo.auto.c.7.o
 
 .debug_loc      0x0000000000000000      0x681
  .debug_loc     0x0000000000000000      0x681 src/sleepstream.c.7.o
@@ -862,14 +863,14 @@ OUTPUT(/home/riccardo/Scrivania/sleepstream/build/pebble-app.elf elf32-littlearm
 .debug_ranges   0x0000000000000000      0x110
  .debug_ranges  0x0000000000000000      0x110 src/sleepstream.c.7.o
 
-.debug_line     0x0000000000000000      0x472
- .debug_line    0x0000000000000000      0x33e src/sleepstream.c.7.o
- .debug_line    0x000000000000033e      0x134 appinfo.auto.c.7.o
+.debug_line     0x0000000000000000      0x481
+ .debug_line    0x0000000000000000      0x34d src/sleepstream.c.7.o
+ .debug_line    0x000000000000034d      0x134 appinfo.auto.c.7.o
 
-.debug_str      0x0000000000000000      0xd13
- .debug_str     0x0000000000000000      0xb94 src/sleepstream.c.7.o
-                                        0xc63 (size before relaxing)
- .debug_str     0x0000000000000b94      0x17f appinfo.auto.c.7.o
+.debug_str      0x0000000000000000      0xd36
+ .debug_str     0x0000000000000000      0xbb7 src/sleepstream.c.7.o
+                                        0xc86 (size before relaxing)
+ .debug_str     0x0000000000000bb7      0x17f appinfo.auto.c.7.o
                                         0x285 (size before relaxing)
 
 .debug_frame    0x0000000000000000      0x190

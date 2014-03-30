@@ -8,9 +8,9 @@
 #define MINUTE_IN_MSEC 60000
 
 static Window *window;
-static TextLayer *text_layer1;
-static TextLayer *text_layer2;
-static TextLayer *text_layer3;
+static TextLayer *text_layer_start;
+static TextLayer *text_layer_stopMusic;
+static TextLayer *text_layer_stop;
 static AppTimer *datalog_timer;
 static AppTimer *threshold_timer;
 const uint32_t inbound_size = 64;
@@ -162,6 +162,10 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
+	layer_set_hidden(text_layer_get_layer(text_layer_start), true);
+	layer_set_hidden(text_layer_get_layer(text_layer_stop), false);
+	layer_set_hidden(text_layer_get_layer(text_layer_stopMusic), false);
+
   accel_service_set_sampling_rate(ACCEL_SAMPLING_10HZ);
   accel_data_service_subscribe(25, &accel_data_handler);
 	logging_session=data_logging_create(tag, DATA_LOGGING_INT, 4, false);
@@ -171,6 +175,10 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
+	layer_set_hidden(text_layer_get_layer(text_layer_start), false);
+	layer_set_hidden(text_layer_get_layer(text_layer_stop), true);
+	layer_set_hidden(text_layer_get_layer(text_layer_stopMusic), true);
+
   accel_data_service_unsubscribe();
 	if (datalog_timer != NULL){
 		app_timer_cancel(datalog_timer);
@@ -191,26 +199,29 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  text_layer1 = text_layer_create((GRect) { .origin = { 0, 0 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer1, "Start monitoring");
-	text_layer_set_text_alignment(text_layer1, GTextAlignmentRight);
-	layer_add_child(window_layer, text_layer_get_layer(text_layer1));
+  text_layer_start = text_layer_create((GRect) { .origin = { 0, 0 }, .size = { bounds.size.w, 20 } });
+  text_layer_set_text(text_layer_start, "Press up to start ->");
+	text_layer_set_text_alignment(text_layer_start, GTextAlignmentRight);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer_start));
 
-	text_layer2 = text_layer_create((GRect) { .origin = { 0, 65 }, .size = { bounds.size.w, 20 } });	
-	text_layer_set_text(text_layer2, "Stop Music");
-	text_layer_set_text_alignment(text_layer2, GTextAlignmentRight);
-	layer_add_child(window_layer, text_layer_get_layer(text_layer2));
+	text_layer_stopMusic = text_layer_create((GRect) { .origin = { 0, 65 }, .size = { bounds.size.w, 20 } });	
+	text_layer_set_text(text_layer_stopMusic, "Stop music ->");
+	text_layer_set_text_alignment(text_layer_stopMusic, GTextAlignmentRight);
+	layer_set_hidden(text_layer_get_layer(text_layer_stopMusic), true);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer_stopMusic));
 
-	text_layer3 = text_layer_create((GRect) { .origin = { 0, 130 }, .size = { bounds.size.w, 20 } });
-	text_layer_set_text(text_layer3, "Stop monitoring");
-	text_layer_set_text_alignment(text_layer3, GTextAlignmentRight);  
-	layer_add_child(window_layer, text_layer_get_layer(text_layer3));
+	text_layer_stop = text_layer_create((GRect) { .origin = { 0, 130 }, .size = { bounds.size.w, 20 } });
+	text_layer_set_text(text_layer_stop, "Stop monitoring ->");
+	text_layer_set_text_alignment(text_layer_stop, GTextAlignmentRight); 
+	layer_set_hidden(text_layer_get_layer(text_layer_stop), true);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer_stop));
+	
 }
 
 static void window_unload(Window *window) {
-  text_layer_destroy(text_layer1);
-  text_layer_destroy(text_layer2);
-	text_layer_destroy(text_layer3);
+  text_layer_destroy(text_layer_start);
+  text_layer_destroy(text_layer_stopMusic);
+	text_layer_destroy(text_layer_stop);
 }
 
 static void init(void) {
