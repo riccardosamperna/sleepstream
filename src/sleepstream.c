@@ -91,7 +91,6 @@ void stop_music(void) {
 	
 }
 	
-
 void send_music_activation(void) {
   DictionaryIterator *iter;
 
@@ -158,13 +157,9 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-  stop_music();
-}
-
-static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
-	layer_set_hidden(text_layer_get_layer(text_layer_start), true);
 	layer_set_hidden(text_layer_get_layer(text_layer_stop), false);
 	layer_set_hidden(text_layer_get_layer(text_layer_stopMusic), false);
+	layer_set_hidden(text_layer_get_layer(text_layer_start), true);
 
   accel_service_set_sampling_rate(ACCEL_SAMPLING_10HZ);
   accel_data_service_subscribe(25, &accel_data_handler);
@@ -172,6 +167,10 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 	tag++;
 	datalog_timer=app_timer_register(MINUTE_IN_MSEC, &addto_datalog, NULL);
 	app_message_init();
+}
+
+static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
+	stop_music();
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -199,18 +198,18 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  text_layer_start = text_layer_create((GRect) { .origin = { 0, 0 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer_start, "Press up to start ->");
-	text_layer_set_text_alignment(text_layer_start, GTextAlignmentRight);
-	layer_add_child(window_layer, text_layer_get_layer(text_layer_start));
-
-	text_layer_stopMusic = text_layer_create((GRect) { .origin = { 0, 65 }, .size = { bounds.size.w, 20 } });	
+  text_layer_stopMusic = text_layer_create((GRect) { .origin = { 0, 10 }, .size = { bounds.size.w, 20 } });
 	text_layer_set_text(text_layer_stopMusic, "Stop music ->");
 	text_layer_set_text_alignment(text_layer_stopMusic, GTextAlignmentRight);
 	layer_set_hidden(text_layer_get_layer(text_layer_stopMusic), true);
 	layer_add_child(window_layer, text_layer_get_layer(text_layer_stopMusic));
 
-	text_layer_stop = text_layer_create((GRect) { .origin = { 0, 130 }, .size = { bounds.size.w, 20 } });
+	text_layer_start = text_layer_create((GRect) { .origin = { 0, 65 }, .size = { bounds.size.w, 20 } });	
+	text_layer_set_text(text_layer_start, "Press select to start ->");
+	text_layer_set_text_alignment(text_layer_start, GTextAlignmentRight);
+	layer_add_child(window_layer, text_layer_get_layer(text_layer_start));
+
+	text_layer_stop = text_layer_create((GRect) { .origin = { 0, 120 }, .size = { bounds.size.w, 20 } });
 	text_layer_set_text(text_layer_stop, "Stop monitoring ->");
 	text_layer_set_text_alignment(text_layer_stop, GTextAlignmentRight); 
 	layer_set_hidden(text_layer_get_layer(text_layer_stop), true);
