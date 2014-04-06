@@ -3,7 +3,7 @@
 #define PLAY_MUSIC 1
 #define STOP_MUSIC 2 
 #define ACTIVATION_KEY 0
-#define STOP_KEY 1
+#define STOP_KEY 0
 #define THRESHOLD_CHANGE_TIME 300000
 #define MINUTE_IN_MSEC 60000
 
